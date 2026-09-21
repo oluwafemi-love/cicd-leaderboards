@@ -1,18 +1,9 @@
-type Employee = {
-  id: number;
-  name: string;
-  department: string;
-  points: number;
-};
-
-type LeaderboardRowProps = {
-  rank: number;
-  employee: Employee;
-};
+import type { LeaderboardRowProps } from "@/app/types/model";
 
 export default function LeaderboardRow({
   rank,
   employee,
+  onAddPoints,
 }: LeaderboardRowProps) {
   const initials = employee.name
     .split(" ")
@@ -23,10 +14,8 @@ export default function LeaderboardRow({
     <div
       className="
         grid items-center gap-4 border-b border-gray-100 px-4 py-4 last:border-b-0
-
         grid-cols-[40px_1fr_auto]
-
-        sm:grid-cols-[60px_1fr_180px_100px]
+        sm:grid-cols-[60px_1fr_180px_140px]
         sm:px-6
       "
     >
@@ -46,26 +35,35 @@ export default function LeaderboardRow({
             {employee.name}
           </p>
 
-          {/* Department shown here on mobile */}
+          {/* Mobile department */}
           <p className="truncate text-sm text-gray-500 sm:hidden">
             {employee.department}
           </p>
         </div>
       </div>
 
-      {/* Department - desktop only */}
+      {/* Desktop department */}
       <span className="hidden text-sm text-gray-600 sm:block">
         {employee.department}
       </span>
 
-      {/* Points */}
-      <span className="text-right font-semibold text-gray-900">
-        {employee.points.toLocaleString()}
-        <span className="ml-1 text-xs font-normal text-gray-500">
-          pts
+      {/* Points + button */}
+      <div className="flex items-center justify-end gap-3">
+        <span className="font-semibold text-gray-900">
+          {employee.points.toLocaleString()}
+          <span className="ml-1 text-xs font-normal text-gray-500">
+            pts
+          </span>
         </span>
-      </span>
+
+        <button
+          type="button"
+          onClick={() => onAddPoints(employee.id)}
+          className="rounded-md bg-blue-600 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-blue-700"
+        >
+          +50
+        </button>
+      </div>
     </div>
   );
 }
-
