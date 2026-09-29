@@ -1,5 +1,5 @@
 export default function Page() {
   return (
-    <imgsrc="/test.jpg" />
+    <img src="/test.jpg" />
   );
 }
