@@ -29,4 +29,10 @@ export const employees = [
     department: "Sales",
     points: 650,
   },
+  {
+    id: 6,
+    name: "Lagbaja Tamedu",
+    department: "Arts",
+    points: 600,
+  },
 ];
